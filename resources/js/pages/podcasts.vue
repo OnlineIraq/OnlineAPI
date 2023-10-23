@@ -71,17 +71,45 @@
                         <!-- Audio files section -->
                         <div v-if="podcast.audio_files.length > 0">
                             <h5>{{ $t('audio_files') }}</h5>
-                            <ul>
-                                <li v-for="audioFile in podcast.audio_files" :key="audioFile.id">
-                                    <audio controls :src="'/audio/' + audioFile.audio_file_name"></audio>
-                                </li>
-                            </ul>
+                            <div class="list-group">
+                                <div class="list-group-item list-group-item-action d-flex align-items-center"
+                                    v-for="audioFile in podcast.audio_files" :key="audioFile.id">
+                                    <!-- Image -->
+                                    <div class="mx-3">
+                                        <img :src="'/images/'+audioFile.image" alt="Audio File Image" class="img-thumbnail rounded"
+                                            style="max-width: 100px; max-height: 100px;" />
+                                    </div>
+                                    <!-- Content -->
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1">{{ audioFile.title }}</h5>
+                                        <p class="mb-1">{{ audioFile.description }}</p>
+                                        <audio controls :src="'/audio/' + audioFile.audio_file_name"></audio>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Form to add a new audio file -->
                         <div>
                             <h5>{{ $t('add_new_audio_file') }}</h5>
                             <b-form @submit.prevent="uploadAudioFile">
+                                <!-- Title -->
+                                <b-form-group id="titleInput" label="Title" label-for="title">
+                                    <b-form-input id="title" v-model="newAudioFileTitle" required></b-form-input>
+                                </b-form-group>
+
+                                <!-- Description -->
+                                <b-form-group id="descriptionInput" label="Description" label-for="description">
+                                    <b-form-input id="description" v-model="newAudioFileDescription"
+                                        required></b-form-input>
+                                </b-form-group>
+
+                                <!-- Image -->
+                                <b-form-group id="imageInput" label="Image" label-for="image">
+                                    <b-form-file id="image" v-model="newAudioFileImage" accept="image/*"></b-form-file>
+                                </b-form-group>
+
+                                <!-- Audio File -->
                                 <b-form-group id="audioFileInput" label="Audio File" label-for="audioFile">
                                     <b-form-file id="audioFile" v-model="newAudioFile" accept=".mp3, .wav, .ogg"
                                         required></b-form-file>
@@ -171,6 +199,9 @@ export default {
                 imageUrl: "",
             },
             newAudioFile: null,
+            newAudioFileTitle: '',
+            newAudioFileDescription: '',
+            newAudioFileImage: null,
             uploading: false,
             file_msg: this.$t('chooseAudioFile'),
             save_disabled: false,
@@ -278,6 +309,7 @@ export default {
             this.podcast.image = '';
             this.file_msg = this.$t('chooseAudioFile');
             this.errors = [];
+            // Clear the form fields
 
         },
         get(page) {
@@ -317,6 +349,9 @@ export default {
             let formData = new FormData();
             formData.append('podcast_id', this.podcast.id);
             formData.append('audio_file', this.newAudioFile);
+            formData.append('title', this.newAudioFileTitle);
+            formData.append('description', this.newAudioFileDescription);
+            formData.append('image', this.newAudioFileImage);
 
             axios
                 .post('/api/podcasts/audio-files/upload', formData)
@@ -327,7 +362,11 @@ export default {
                 .then((audioFilesResponse) => {
                     this.podcast.audio_files = audioFilesResponse.data;
                     this.successMessage();
-                    this.clear();
+                    this.newAudioFile = null;
+                    // Clear the form fields
+                    this.newAudioFileTitle = '';
+                    this.newAudioFileDescription = '';
+                    this.newAudioFileImage = null;
                     this.newAudioFile = null;
                 })
                 .catch((error) => {

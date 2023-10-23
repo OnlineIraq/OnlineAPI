@@ -11,7 +11,8 @@ class AudioFile extends Model
     protected $table = 'audio_files';
     public $timestamps = true;
 
-    protected $fillable = ['audio_file_name'];
+    protected $fillable = ['audio_file_name', 'title', 'description', 'image'];
+
 
     use SoftDeletes;
 
