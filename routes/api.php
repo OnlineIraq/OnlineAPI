@@ -87,7 +87,7 @@ Route::post('/send-notification',[\App\Http\Controllers\NotificationController::
 Route::post('/send-notification-all',[\App\Http\Controllers\NotificationController::class,'sendPushNotificationsAll']);
 
 
-// Route::resource('podcasts', PodcastController::class);
+// Podcast Routes
 Route::middleware('auth:sanctum')->prefix('podcasts')->group(function () {
     Route::get('/get',[\App\Http\Controllers\PodcastController::class,'get']);
     Route::get('/{id}',[\App\Http\Controllers\PodcastController::class,'show']);

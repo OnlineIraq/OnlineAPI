@@ -36,5 +36,9 @@ export default {
     username:"ناوی بەکارهێنەر",
     phone:"ژمارەی پەیوەندی",
     complains:"سکاڵاکان",
-    banners: "باننەرەکان"
+    banners: "باننەرەکان",
+    products: "ئامێرەکان",
+    podcasts: "پۆدکاستەکان",
+    audio_files: "فایل پۆدکاستەکان",
+    add_new_audio_file: "زیادکردن فایل پۆدکاستە",
 }

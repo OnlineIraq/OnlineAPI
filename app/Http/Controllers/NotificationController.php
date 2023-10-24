@@ -36,7 +36,7 @@ class NotificationController extends Controller
         ];
 
         $arrayToSend = [
-            "to" => $token_id,
+            'to' => $token_id,
             'notification' => $notification,
             'data' => $dataArr,
             'priority' => 'high'
@@ -84,11 +84,8 @@ class NotificationController extends Controller
             'Content-Type' => 'application/json'
         ];
 
-        // $response = Http::withHeaders($headers)->post($url, $arrayToSend);
-        return 1;
-        // return $response->json();
+        $response = Http::withHeaders($headers)->post($url, $arrayToSend);
+
+        return $response->json();
     }
-
-
-    // Add more methods as needed
 }

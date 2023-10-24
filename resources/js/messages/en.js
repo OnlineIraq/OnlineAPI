@@ -33,5 +33,9 @@ export default {
     search:"search",
     password:"password",
     packages:"packages",
-    banners: "Banners"
+    banners: "Banners",
+    products: "products",
+    podcasts: "podcasts",
+    audio_files: "Audio Files",
+    add_new_audio_file: "Add new audio file",
 }

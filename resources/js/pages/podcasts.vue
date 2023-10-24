@@ -88,9 +88,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <hr>
                         <!-- Form to add a new audio file -->
-                        <div>
+                        <div class="py-4 px-2">
                             <h5>{{ $t('add_new_audio_file') }}</h5>
                             <b-form @submit.prevent="uploadAudioFile">
                                 <!-- Title -->
@@ -133,7 +133,7 @@
                     <b-modal id="addModal" :content-class="{
                             right: $i18n.locale == 'en' ? false : true,
                             left: $i18n.locale == 'en' ? true : false,
-                        }" :title="$t('podcast')" @hide="clear">
+                        }" :title="$t('podcasts')" @hide="clear">
                         <div class="form-input">
                             <input type="text" autocomplete="off" required name="title" v-model="podcast.title" />
                             <label>{{ $t("title") }}</label>

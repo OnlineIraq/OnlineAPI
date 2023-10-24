@@ -76,12 +76,12 @@
                     <b-modal id="infoModal" :content-class="{
                         right: $i18n.locale == 'en' ? false : true,
                         left: $i18n.locale == 'en' ? true : false,
-                    }" :title="$t('news')" @hide="clear">
+                    }" :title="$t('banners')" @hide="clear">
                         <div class="form-input">
                             <input type="text" autocomplete="off" required name="name" v-model="banner.name" />
                             <label>{{ $t("name") }}</label>
                             <span class="error text-danger" v-if="errors.name">{{
-                                errors.KuTitle[0]
+                                errors.name[0]
                             }}</span>
                         </div>
                         <div class="form-input">

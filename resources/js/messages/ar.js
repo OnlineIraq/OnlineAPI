@@ -36,5 +36,9 @@ export default {
     username:"اسم االمستخدم",
     phone:"رقم الهاتف",
     complains:"يشكو",
-    banners: "باننر"
+    banners: "باننر",
+    products: "المنتجات",
+    podcasts: "پديغات داخلية",
+    audio_files: "فايل الصوتيات",
+    add_new_audio_file: "إضافة فايل الصوتيات",
 }

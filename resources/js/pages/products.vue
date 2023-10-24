@@ -204,7 +204,7 @@ export default {
             this.product.ArDesc = item.ArDesc;
             this.product.Price = item.Price;
 
-            this.product.imageUrl = '/images/' + item.image;
+            this.product.imageUrl = '/images/' + item.Image;
             this.$root.$emit("bv::show::modal", "infoModal");
         },
         choosedfile() {
